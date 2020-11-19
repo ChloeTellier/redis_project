@@ -1,81 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# # Redis project
+# # Projet Redis 
 # Fait par @ChloéTellier, @OcéaneGuitton, @FlavieThévenard et @AntoineLucas
-# 
-# ## Livrables : 
-# ## - Ce notebook Jupyter avec le projet réalisé et quelques explications.
-# ## - Un fichier *projet.py*  avec le code commenté pour exécuter facilement le programme.
-
-# # Un peu de contexte : c'est quoi Redis ?
-
-# Redis, qui sert d'acronyme pour **RE**mote **DI**ctionary **S**erver, est système de gestion de base de données structure de stockage de données en mémoire, sous licence BSD, lancée en 2009 par Salvatore Sanfilippo. 
-# 
-# L'une des grandes différences entre Redis et les autres bases de données NoSQL réside dans les structures de données que Redis fournit. 
-# Les utilisateurs de Redis peuvent exploiter les structures de données comme les chaînes, les hachages, les listes, les ensembles et les ensembles triés en utilisant des commandes similaires aux opérations de requête présente dans la plupart des langages de programmation. 
-# 
-# Pour mieux comprendre les différentes structures nous vous invitons à parcourir rapidement le lien [ci-contre](https://redis.io/topics/data-types-intro).
-# Et plus généralement la [documentation](https://redis.io/documentation) et le [site](https://redis.io/) de Redis qui ont des documents complets et plutôt clairs.
-# 
-# **[Bonus tutoriel rigolo](https://try.redis.io/?_ga=2.15710581.2114473602.1604997184-1839395559.1604575298)**
-# 
-# 
-
-# # Installation
-
-# ## Linux
-# 
-# Il suffit de se rendre à cette [adresse](https://redis.io/download) et de suivre les consignes indiquées dans la partie installation.
-# 
-# Vous serez ensuite prêt en lançant dans un terminal la commande 
-# ```shell 
-# src/redis-server```
-# 
-# Voici un exemple de terminal indiquant le fonctionnement d'un serveur Redis : [serveur redis](https://i.stack.imgur.com/lKqjc.png)
-# *un exemple de serveur redis ouvert*
-# 
-# Vous pouvez ensuite lancer des requêtes en lançant le client redis :
-# ```shell
-# src/redis-cli```
-# 
-# Ensuite il suffit de réaliser les requêtes sous python ! On verra plus bas pour établir la connexion avec le serveur redis généré plus haut.
-# 
-# 
-
-# ## Installation des librairies utiles dans python :
-# 
-# On doit installer les librairies python suivantes pour exécutez notre code : <br>
-# 
-# ```conda/pip install redis
-# conda/pip install pandas
-# conda/pip install numpy
-# conda/pip install scipy
-# conda/pip install seaborn```
-# 
-# Si vous avez des difficultés à installer les modules au sein de votre IDE python (**pyzo**,**spyder**,etc..) vous pouvez vous référez à l'aide suivante : [Stackoverflow](https://stackoverflow.com/questions/33897860/python-spyder-conda-install-failure)
-# 
-# Sinon via un terminal de commandes vous devez exécuter les commandes suivantes si vous utilisez Anaconda.
-# 
-# ```shell
-# conda install redis
-# conda install pandas
-# conda install numpy
-# conda install scipy
-# conda install seaborn```
-# 
-# Ou bien celle-ci pour l'utilisation de pip
-# ```shell
-# pip install redis
-# pip install pandas
-# pip install numpy
-# pip install scipy
-# pip install seaborn```
-
-# ## Importation des librairies dans python :
-
-# In[44]:
-
 
 import redis
 import numpy
@@ -89,48 +14,19 @@ import time
 
 
 # ## Connexion
-# 
-# Commes les autres SGBD, il faut établir une connexion avec Redis pour communiquer avec le SGBD lors de nos requêtes python.
-# 
-# Ici on fixe les paramètres de connexion (commun pour tous) pour le nom de l'hôte `redis_host` et le numéro de port serveur `redis_port`.
-
-# In[45]:
-
 
 redis_host = "127.0.0.1"
 redis_port = 6379
 
-
-# On peux ainsi établir la connexion avec la commande `redis.Redis` en précisant le numéro de la database que l'on veux utiliser (par défaut 16 database disponible sur un serveur Redis).
-
-# In[46]:
-
-
 r = redis.Redis(host=redis_host, port=redis_port, db = 0)
 
 
-# ## Nous sommes prêts pour faire quelques requêtes et explorer Redis!
-
-# Nous avons choisi un exemple pour illustrer la force de Redis : la gestion de stock de sushi **(miam)**.
-# 
-# *Voici une photo d'un échantillon de sushis variés* [sushi](https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg)
-# *source:https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg*
-
-# # Création de notre base de données 
-# 
-# Nous avons choisi de créer notre base de données de sushi en indiquant :
-#  - la composition d'un sushi selon les ingrédients qui le composent : 73 ingrédients différents, qui peuvent prendre la modalité 'Oui' (le sushi contient cet ingrédient) ou 'Non' (le sushi ne contient pas cet ingrédient)
-#  - le stock de ce sushi disponible : généré aléatoirement entre 10 et 10000
-#  - le nombre de sushi acheté : initialisé à 0
-
-# In[47]:
-
-
-## Création de la database sushis
+# ## Création de notre base de données 
 
 random.seed(444)
 
 # Liste des attributs avec 2 modalités : les ingrédients
+
 saumon = ['Oui', 'Non']
 saumon_teriyaki = ['Oui', 'Non']
 daurade = ['Oui', 'Non']
@@ -211,7 +107,7 @@ sushis = []
 
 tps1 = time.perf_counter()
 
-for i in range(0, 1000):
+for i in range(0, 100000):
     saumon_choice = random.choice(saumon)
     saumon_teriyaki_choice = random.choice(saumon_teriyaki)
     daurade_choice = random.choice(daurade)
@@ -318,65 +214,35 @@ for i in range(0, 1000):
 tps2 = time.perf_counter()
 print(tps2 - tps1)
 
-
-# Le temps pour créer une liste de 1 million de sushis différents est d'environ  A COMPLETER
-
-# ### On ajoute ensuite nos données générées dans redis 
-# 
-# Une des forces de redis est l'utilisation de pipeline pour réaliser les requêtes, nous y reviendrons en fin de rapport. Pour plus d'informations, rendez-vous [ici](https://redis.io/topics/pipelining).
-
-# In[48]:
-
-
-
 with r.pipeline() as pipe: 
     for i in range(len(sushis)):
         name = str("sushi:")+str(i)
         r.hmset(name,sushis[i])
-        
 
+stock_exemple_propre = int(r.hget('sushi:3564','stock').decode())
+stock_exemple_bytes = r.hget('sushi:3564','stock')
+print("En écriture propre : ",stock_exemple_propre," / ","En écriture Bytes : ",stock_exemple_bytes)
 
-# On peux ensuite effectuer quelques requêtes simples avec les objets **hashs** que nous utiliserons au cours de notre projet.
-# Pour plus d'informations sur les requêtes sur les types d'objets **hashs**, rendez-vous [ici](https://redis.io/commands#hash).
-# 
-# Ainsi, comme exemple ici, nous avons nos clés avec la dénomination *sushi:i* avec i le numéro du sushi allant de 1 à 1000000. Nous pouvons alors récupérer au sein de chaque clés différentes informations stockés sous une forme similaire à un dictionnaire.
+# On définit nos messages d'erreur, que l'on utilisera pour prévenir l'utilisateur selon différents critères 
 
-# In[49]:
-
-
-stock_exemple_propre = int(r.hget('sushi:3','stock').decode())
-stock_exemple_bytes = r.hget('sushi:3','stock')
-print("Propre:",stock_exemple_propre,"  ","Bytes:",stock_exemple_bytes)
-
-
-# Ainsi, on récupère le stock (désigné par `stock` du *sushi:3*.
-# Notez l'utilisation de `int()` et `.decode()` pour récupérez sous un format plus "agréable" les requêtes de redis qui sont retournées par défaut au format **bytes**.
-
-# Nous allons ensuite définir quelques fonctions utiles pour réaliser quelques requêtes.
-# Pour cela nous aurons besoin de définir certains messages d'erreurs.
-
-# In[50]:
-
-
-# on définit notre message d'erreur qu'on utilisera pour prévenir l'utilisateur de la fin du stock d'un objet
-
+# Plus de stock pour le sushi désiré
 class OutOfStockError(Exception):
-    """Raised when sushi.com is out of stock for the desired sushi"""
+    """Notre magasin de sushis n'a plus du tout de stock pour le sushi désiré"""
     
+# Stock rempli pour le sushi désiré : stock fixé à 10 000 maximum
 class TooMuchStockError(Exception):
-    """Raised when sushi.com is full of the desired sushi"""
-    
+    """Notre magasin de sushis n'a plus de place pour stocker le sushi d'intérêt, nous n'avons rien pu ajouter
+    au stock"""
+
+# Le client désirait acheter trop de sushis et a fini la fin du stock
 class TooMuchDemandError(Exception):
-    """Raised when sushi.com has not enough sushi asked"""
-    
+    """Le client souhaitait acheter plus de sushis qu'il n'y en avait de disponibles, il a fini le stock
+    et n'a pas eu autant de sushis qu'il l'esperait"""
+
+# Nous avons restocké au maximum les 10 000 sushis
 class NoPlaceAvailableError(Exception):
-    """Raised when sushi.com has restocké les 10000 sushis maximum."""
-
-
-# Nous allons maintenant créer la fonction `buyitem`. Celle-ci permet d'acheter un certain nombre de sushis (argument `count`) d'un certain type (argument `sushi_id`) : cela diminue-donc le stock de sushis, mais augmente le nombre de sushis achetés.
-
-# In[51]:
-
+    """Notre magasin n'a pas assez de place pour stocker tous les sushis que l'on souhaitait,
+    seuls certains ont pu être ajoutés au stock"""
 
 def buyitem(r, sushi_id,count):
 
@@ -386,14 +252,14 @@ def buyitem(r, sushi_id,count):
 
             pipe.watch(sushi_id)
             nleft = int(r.hget(sushi_id,'stock').decode())
-            # On utilise le int et decode pour convertir l'output bytes de redis en nombre int
+            # On utilise le int et decode pour convertir l'output bytes de Redis en nombre int
             
             # On réalise l'opération d'achat normalement s'il y a assez de sushis en stock
             if nleft > count :
                 pipe.multi() # On débute l'enregistrement des étapes qu'on veux réaliser sur le serveur redis
                 pipe.hincrby(sushi_id, 'stock', -count) # Le stock diminue ...
                 pipe.hincrby(sushi_id, 'nb_achat', count) # ... Et le nombre de sushis achetés augmente
-                pipe.execute() # On transfert l'ensemble des étapes réalisée depuis multi sur notre serveur redis
+                pipe.execute() # On transfert l'ensemble des étapes réalisée depuis multi sur notre serveur Redis
                 break
             
             # Si le nombre de sushis n'est pas suffisant pour satisfaire la demande, on achète tout ce qu'il reste
@@ -413,20 +279,10 @@ def buyitem(r, sushi_id,count):
     return None
 
 
-# Testons maintenant cette fonction : et si on achetait 60 sushis de type 5 ?
-
-# In[52]:
-
-
 buyitem(r,"sushi:5",60)
 r.hmget("sushi:5","stock","nb_achat")
 
-
-# Nous allons maintenant créer la fonction `restock`. Celle-ci permet au magasin de se ré-approvisionner d'un certain nombre (argument `stock_count`) de sushis d'un certain type (argument `sushi_id`) : le stock de ce type de sushis augmente ainsi.
-# Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 sushis d'un même type (c'est déjà pas mal).
-
-# In[53]:
-
+# Re-exécutez la cellule précédente : on a modifié les valeurs de stock et de la quantité d'achat sur notre database.
 
 def restock(r,sushi_id,stock_count):
     
@@ -440,7 +296,7 @@ def restock(r,sushi_id,stock_count):
             # S'il y a suffisamment de places pour stocker les sushis, on achète le nombre demandé
             if nleft_restock + stock_count < 10000:
                 pipe.multi()
-                pipe.hincrby(sushi_id, 'stock', stock_count)
+                pipe.hincrby(sushi_id, 'stock', stock_count) # On modifie le stock sur notre database Redis
                 pipe.execute()
                 break
             
@@ -462,17 +318,11 @@ def restock(r,sushi_id,stock_count):
 
 # Testons maintenant cette fonction : et si on augmentait le stock du sushi 9 de 400 ?
 
-# In[54]:
-
-
 restock(r,'sushi:9', 400)
-r.hmget("sushi:4",'stock','nb_achat')
+r.hmget("sushi:9",'stock','nb_achat')
 
 
-# Nous allons maintenant créer la fonction `item_info`. Celle-ci permet de récupérer toutes les informations relatives à nos ventes de sushis : stock, vente. Ces informations seront ensuite stockées dans un Dataframe Pandas.
-
-# In[55]:
-
+# En répétant la cellule précédente plusieurs fois, on augmente la quantité stockée du sushi 9 comme précédemment.
 
 def item_info():
     
@@ -492,28 +342,11 @@ def item_info():
     
     return(item_df)
 
-
-# In[56]:
-
-
 liste_sushi = item_info()
 liste_sushi
 
 
-# In[57]:
-
-
-# A ENLEVER
-
-#sns.set()
-#sns.barplot(data=liste_sushi,x=liste_sushi.index,y='stock')
-#sns.barplot(data=liste_sushi,x=liste_sushi.index,y='nb_achat')
-
-
-# La fonction `item_ingredients`, elle, permet de récupérer les ingrédients de nos différents types de sushis (73 variables donc, correspondant à l'absence ou à la présence de chacun des ingrédients). Ces informations seront ensuite stockées dans un Dataframe Pandas.
-
-# In[58]:
-
+# La fonction `item_ingredients`, elle, permet de récupérer les ingrédients de nos différents types de sushis (73 variables donc, correspondant à l'absence ou à la présence de chacun des ingrédients). Ces informations seront ensuite stockées dans un dataframe Pandas.
 
 def item_ingredient():
     
@@ -543,7 +376,7 @@ def item_ingredient():
 
         # La boucle permet de rentrer l'ensemble des ingrédients dans le tableau
         for i in range(len(name_ingredient)):
-            ingredient = r.hget(name, name_ingredient[i]).decode()
+            ingredient = r.hget(name, name_ingredient[i]).decode() # On récupère les infos depuis la database Redis
             ingredient_add.append(ingredient)
         
         ingredient_get.append(ingredient_add)
@@ -554,17 +387,8 @@ def item_ingredient():
     
     return(ingredient_df)
 
-
-# In[59]:
-
-
 ingredient_df = item_ingredient()
 ingredient_df
-
-
-# La fonction `sushi_interest`, définie ci-dessous, est très pratique pour les clients. Ceux-ci peuvent entrer en arguments une liste des ingrédients qu'ils aiment dans les sushis, et la fonction leur retourne tous les sushis de la carte qui contiennent l'ensemble de ces ingrédients.
-
-# In[60]:
 
 
 def sushi_interet(r,liste_ingredients,ingredient_df):
@@ -582,94 +406,6 @@ def sushi_interet(r,liste_ingredients,ingredient_df):
     return(sushi_interessant)
 
 
-# Faisons un essai : je suis un client qui aime le saumon, l'avocat, le thon, la roquette, le concombre et la cannelle, et souhaiterait un sushi qui mélange toutes ces saveurs.
-
-# In[62]:
-
-
-liste_ingredients = ['saumon','avocat','thon','roquette','concombre','cannelle']
+liste_ingredients = ['saumon', 'avocat', 'thon', 'roquette', 'cannelle', 'cardamome', 'curcuma',
+                     'feve', 'edamame', 'paprika', 'piment', 'poivre', 'safran']
 sushi_interet(r,liste_ingredients,ingredient_df)
-
-
-# ### Eventuellement inclure :
-#  - rajouter des options de monitoring du stock des objets et complexifier un peu l'offre donc voir modifier les chsoes au début pour faire genre de la gestion de maxi database de vetements 
-#  - une visu type barchat du stock pour chaque produit avec les requetes sur la db? à voir comment faire je maitrise pas trop ça
-#  - des visus complémentaires informant sur l'état des stocks, évolution des achats etc... à voir
-#  
-#  ##### faire des graphs "big data"
-# 
-# - genre faire une représentation de l'évolution du stock/nb_achat (total de sushi?) au cours du temps
-# - faire le camembert de proportion de sushi qui contient tel ingredient 
-# 
-# on s'intéresse à l'expiration et à comment on pourrait l'utiliser en pratique
-
-# In[375]:
-
-
-from datetime import timedelta
-r.setex("runner",timedelta(minutes=1.5), value =" careful! ")
-r.ttl("runner")
-
-
-# ### on va voir comment on peux ajouter des sushis temporaires ! avec de superbes recettes miam !
-# - pour cela on se sert de la fonctionnalité EXPIRE présente dans redis, pour en savoir plus allez [ici](https://redis.io/commands#generic)
-# - __ce serait bien d'avoir un système de surveillance des perfs de notre server redis__
-
-# In[397]:
-
-
-# sert a fixer la durée de vie d'un sushi ! par ex simuler une vente temporaire !
-
-r.expire('sushi:3',15)
-
-# tant que la clé est encore en vie on peux la manipuler comme bon nous semble et récupérer les informations que l'on veux
-r.hgetall('sushi:3')
-
-
-# In[ ]:
-
-
-def life_expire(r,life_count)
-
-
-# In[ ]:
-
-
-
-
-
-# ### Qualitative approach
-# We are looking for differences in :
-# - grammar
-# - ease of use and prise en main
-# - setting up process (manipulation of our first database)
-# - access of ressources
-# 
-
-# ### on parle de redis ici de son usage 
-# 
-# - prise ne main très facile et super documentation tout est renseigné on comprend assez vite son fonctionnement 
-# - difficile de se projeter dans l'usage de ce sgbd car différents des autres et assez spécifique même si on peux l'utilsier pour tout usage il sera surtout performant dans des tâches spé.
-# - open source et accessible facilement mais l'environnement autour non car le proejt à été repris par une entreprise [redislabs](https://redislabs.com/) et typiquement un redis-GUI (logiciel pour manipuler des db redis sans lignes de commandes) n'est pas accessible facilement 
-# - une bonne communauté mais pas très large donc accès ressources limités
-# 
-
-# ### Quantitative approach
-# We are looking for differences in :
-# - time computation of requests
-# - memore/cache use for same data
-# 
-
-# ex : système pour gérer els incrémentation lors de connexion sur srveeur/page web simultanée etc.. gère bien ça
-# 
-# gere automatiquement l'expiration des informations7
-# 
-# système de persistance :
-# - RDB : on crée un dump file en .rdb qui est sauvegardé et qui peux etre rechargé 
-# - AOF : ??? a voir
-# 
-
-# Expliquer histoire de redis les points clés et différences par rapport aux autres sql :
-#    - cache et session bonne gestion
-#    - systeme cle-valeur avancé incr, decincr etc.. pas mal puissant
-#    - L'une des raisons pour lesquelles Redis est si rapide dans les opérations de lecture et d'écriture est que la base de données est conservée en mémoire (RAM) sur le serveur.

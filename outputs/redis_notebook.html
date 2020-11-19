@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>redis_script</title>
+<title>redis_notebook</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,27 +13077,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Redis-project">Redis project<a class="anchor-link" href="#Redis-project">&#182;</a></h1><p>Fait par @ChloéTellier, @OcéaneGuitton, @FlavieThévenard et @AntoineLucas</p>
-<h2 id="Livrables-:">Livrables :<a class="anchor-link" href="#Livrables-:">&#182;</a></h2><h2 id="--Ce-notebook-Jupyter-avec-le-projet-r&#233;alis&#233;-et-quelques-explications.">- Ce notebook Jupyter avec le projet r&#233;alis&#233; et quelques explications.<a class="anchor-link" href="#--Ce-notebook-Jupyter-avec-le-projet-r&#233;alis&#233;-et-quelques-explications.">&#182;</a></h2><h2 id="--Un-fichier-projet.py--avec-le-code-comment&#233;-pour-ex&#233;cuter-facilement-le-programme.">- Un fichier <em>projet.py</em>  avec le code comment&#233; pour ex&#233;cuter facilement le programme.<a class="anchor-link" href="#--Un-fichier-projet.py--avec-le-code-comment&#233;-pour-ex&#233;cuter-facilement-le-programme.">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Un-peu-de-contexte-:-c'est-quoi-Redis-?">Un peu de contexte : c'est quoi Redis ?<a class="anchor-link" href="#Un-peu-de-contexte-:-c'est-quoi-Redis-?">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Redis, qui sert d'acronyme pour <strong>RE</strong>mote <strong>DI</strong>ctionary <strong>S</strong>erver, est système de gestion de base de données structure de stockage de données en mémoire, sous licence BSD, lancée en 2009 par Salvatore Sanfilippo.</p>
-<p>L'une des grandes différences entre Redis et les autres bases de données NoSQL réside dans les structures de données que Redis fournit. 
-Les utilisateurs de Redis peuvent exploiter les structures de données comme les chaînes, les hachages, les listes, les ensembles et les ensembles triés en utilisant des commandes similaires aux opérations de requête présente dans la plupart des langages de programmation.</p>
-<p>Pour mieux comprendre les différentes structures nous vous invitons à parcourir rapidement le lien <a href="https://redis.io/topics/data-types-intro">ci-contre</a>.
-Et plus généralement la <a href="https://redis.io/documentation">documentation</a> et le <a href="https://redis.io/">site</a> de Redis qui ont des documents complets et plutôt clairs.</p>
-<p><strong><a href="https://try.redis.io/?_ga=2.15710581.2114473602.1604997184-1839395559.1604575298">Bonus tutoriel rigolo</a></strong></p>
+<h1 id="Projet-Redis">Projet Redis<a class="anchor-link" href="#Projet-Redis">&#182;</a></h1><p>Fait par @ChloéTellier, @OcéaneGuitton, @FlavieThévenard et @AntoineLucas</p>
+<h3 id="Livrables-fourni-avec-ce-rapport-:">Livrables fourni avec ce rapport :<a class="anchor-link" href="#Livrables-fourni-avec-ce-rapport-:">&#182;</a></h3><ul>
+<li>Un fichier <em>projet.py</em>  avec le code brut commenté pour exécuter rapidement notre code.</li>
+</ul>
 
 </div>
 </div>
@@ -13105,23 +13088,109 @@ Et plus généralement la <a href="https://redis.io/documentation">documentation
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h1>
+<h2 id="Un-peu-de-contexte-:-c'est-quoi-Redis-?">Un peu de contexte : c'est quoi Redis ?<a class="anchor-link" href="#Un-peu-de-contexte-:-c'est-quoi-Redis-?">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Linux">Linux<a class="anchor-link" href="#Linux">&#182;</a></h2><p>Il suffit de se rendre à cette <a href="https://redis.io/download">adresse</a> et de suivre les consignes indiquées dans la partie installation.</p>
-<p>Vous serez ensuite prêt en lançant dans un terminal la commande</p>
+<p>Redis, qui sert d'acronyme pour <strong>RE</strong>mote <strong>DI</strong>ctionary <strong>S</strong>erver, est système de gestion de base de données NoSQL (Not Only SQL) de très haute performance, de type clé-valeur, lancé en 2009 par Salvatore Sanfilippo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La mémoire de Redis est vertigineuse ce qui permet d’aborder des problématiques BIG DATA avec ce SGBD. Redis est un SGBD scalable, c’est-à-dire qu’il est capable de s’adapter à un changement d’ordre de grandeur de la demande, et plus particulièrement de maintenir ses fonctionnalités et ses performances en cas de forte demande. <br>
+Redis est très utilisé par les sites à gros trafic tels que Twitter, The Guardian, Stackoverflow, Netflix, etc. <br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>L'une des grandes différences entre Redis et les autres bases de données NoSQL réside dans les structures de données que Redis fournit.</p>
+<p>Redis accepte tous types de données. En effet, les valeurs peuvent prendre n’importe quelle forme : nombres, chaines, listes, json, xml, html, php, images, vidéos …
+Voici quelques types/structures de données manipulables dans Redis :</p>
+<ul>
+<li>Des chaines de caractères (à une clef est associée une valeur de type chaine de caractère)</li>
+<li>Des numériques (à une clef est associée une valeur de type numérique)</li>
+<li>Des listes (plusieurs clefs qui ont des valeurs du même type)</li>
+<li>Des sets (listes non ordonnées où les clefs ne sont pas répétées, où les clefs sont uniques)</li>
+<li>Des sets ordonnés (permettant un système de classement)</li>
+<li>Des hashs (objets contenant des clefs, ces dernières contenant elles-mêmes une liste de valeurs)</li>
+<li>Des données de géolocalisation</li>
+<li>Etc.</li>
+</ul>
+<p>Pour mieux comprendre les différentes structures nous vous invitons à parcourir rapidement le lien <a href="https://redis.io/topics/data-types-intro">ci-contre</a>, et plus généralement la <a href="https://redis.io/documentation">documentation</a> et le <a href="https://redis.io/">site</a> de Redis qui ont des documents complets et plutôt clairs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Une des caractéristiques principales de Redis est de stocker les données en mémoire RAM (Random Access Memory) ou mémoire vive : les données sont stockées sur le court terme. De ce fait, le SGBD Redis a une faible empreinte mémoire.<br>
+Plus particulièrement, Redis permet de gérer les données en « cache » avec le système clé/valeur. 
+La mémoire cache est un type de mémoire vive / mémoire RAM à laquelle le microprocesseur peut accéder plus rapidement qu’à la mémoire RAM habituelle. <br>
+Gérer les données en cache permet d’accéder à des données momentanément stockées sur la mémoire vive et d’éviter de refaire les mêmes processus de calcul en amont. <br>
+Ainsi, Redis permet de gérer des données peu persistantes en présentant la fonctionnalité suivante : il est possible d’attribuer une durée de vie aux données insérées, ce qui permet de mettre en place un système de cache sans se préoccuper de de leur invalidation/disparition. <br>
+Du fait des caractéristiques vues précédemment, Redis est fréquemment utilisé pour stocker des données volatiles et fréquemment lues ou encore les sessions utilisateurs. <br>
+Par exemple, Redis est utilisé par Twitter ou par des sites marchands pour stocker les informations utilisateurs en mémoire cache.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Le-type-de-langage-de-requ&#234;te-adapt&#233;-au-SGBD-Redis-est-un-langage-NoSQL-orient&#233;-cl&#233;/valeur.">Le type de langage de requ&#234;te adapt&#233; au SGBD Redis est un langage NoSQL orient&#233; cl&#233;/valeur.<a class="anchor-link" href="#Le-type-de-langage-de-requ&#234;te-adapt&#233;-au-SGBD-Redis-est-un-langage-NoSQL-orient&#233;-cl&#233;/valeur.">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installation-de-Redis-:-on-met-les-mains-dans-le-cambouis-!">Installation de Redis : on met les mains dans le cambouis !<a class="anchor-link" href="#Installation-de-Redis-:-on-met-les-mains-dans-le-cambouis-!">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le site officiel de Redis est assez complet et instinctif. <br>
+Redis est en Open Source, il peut donc être utilisé, utilisé et édité librement par tous ses utilisateurs. <br>
+Nous allons détailler ici les paramètres d’installation et de prise en main. <br>
+Redis peut s’utiliser sur tous les types de systèmes d’exploitation, il est toutefois plus avantageux de l’utiliser sur Linux en comparaison de Windows ou Mac. <br>
+Si l’idée est dans un premier temps de vous faire la main sans installer le système sur votre ordinateur nous vous invitons à consulter ce petit <a href="https://try.redis.io/?_ga=2.15710581.2114473602.1604997184-1839395559.1604575298">tutoriel</a> qui permet de s’essayer aux premières lignes de commandes simples. <br>
+<br>
+Le site de Redis est configuré de manière assez pédagogique et les informations principales d’installation s’y trouvent, ainsi que toutes les informations de prise en main des commandes (respectivement onglet download et commands).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Windows">Windows<a class="anchor-link" href="#Windows">&#182;</a></h3><p>Ce <a href="https://riptutorial.com/fr/redis/example/29962/installation-et-execution-de-redis-server-sous-windows">tutoriel</a> est très complet et guide toutes les étapes de l’installation de Redis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Linux">Linux<a class="anchor-link" href="#Linux">&#182;</a></h3><p>Il suffit de se rendre à cette <a href="https://redis.io/topics/quickstart">adresse</a> et de suivre les consignes indiquées dans la partie installation.</p>
+<p>Vous serez ensuite prêt en lançant dans un terminal la commande :</p>
 <div class="highlight"><pre><span></span>src/redis-server
 </pre></div>
-<p>Voici un exemple de terminal indiquant le fonctionnement d'un serveur Redis : <a href="https://i.stack.imgur.com/lKqjc.png">serveur redis</a>
-<em>un exemple de serveur redis ouvert</em></p>
-<p>Vous pouvez ensuite lancer des requêtes en lançant le client redis :</p>
+<p>Vous pouvez ensuite lancer des requêtes en lançant le client Redis :</p>
 <div class="highlight"><pre><span></span>src/redis-cli
 </pre></div>
-<p>Ensuite il suffit de réaliser les requêtes sous python ! On verra plus bas pour établir la connexion avec le serveur redis généré plus haut.</p>
+<p><strong>Bonus :</strong> pour les utilisateurs Linux, un logiciel interactif visuel pour utiliser Redis existe et est gratuit pour cet OS : <a href="https://rdm.dev/pricing">Redis Desktop Manager</a>.</p>
 
 </div>
 </div>
@@ -13129,27 +13198,37 @@ Et plus généralement la <a href="https://redis.io/documentation">documentation
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation-des-librairies-utiles-dans-python-:">Installation des librairies utiles dans python :<a class="anchor-link" href="#Installation-des-librairies-utiles-dans-python-:">&#182;</a></h2><p>On doit installer les librairies python suivantes pour exécutez notre code : <br></p>
-<p><code>conda/pip install redis
-conda/pip install pandas
-conda/pip install numpy
-conda/pip install scipy
-conda/pip install seaborn</code></p>
-<p>Si vous avez des difficultés à installer les modules au sein de votre IDE python (<strong>pyzo</strong>,<strong>spyder</strong>,etc..) vous pouvez vous référez à l'aide suivante : <a href="https://stackoverflow.com/questions/33897860/python-spyder-conda-install-failure">Stackoverflow</a></p>
-<p>Sinon via un terminal de commandes vous devez exécuter les commandes suivantes si vous utilisez Anaconda.</p>
+<h3 id="Mac-OS">Mac OS<a class="anchor-link" href="#Mac-OS">&#182;</a></h3><p>Vous pouvez suivre ce <a href="https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298">lien</a> pour installer Redis sur votre machine.</p>
+<p><em>Nous n'avons pas de machines sous Mac OS et n'avons pas pu vérifier la bonne installation de Redis sur ce système.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installation-des-librairies-utiles-dans-Python-:">Installation des librairies utiles dans Python :<a class="anchor-link" href="#Installation-des-librairies-utiles-dans-Python-:">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Via un terminal de commandes vous devez exécuter les commandes suivantes si vous utilisez <a href="https://www.anaconda.com/">Anaconda</a>.</p>
 <div class="highlight"><pre><span></span>conda install redis
 conda install pandas
 conda install numpy
 conda install scipy
 conda install seaborn
 </pre></div>
-<p>Ou bien celle-ci pour l'utilisation de pip</p>
+<p>Ou bien celles-ci si vous utilisez le gestionnaire de librairies <a href="https://pypi.org/project/pip/">pip</a>.</p>
 <div class="highlight"><pre><span></span>pip install redis
 pip install pandas
 pip install numpy
 pip install scipy
 pip install seaborn
 </pre></div>
+<p>Si vous avez des difficultés à installer les modules au sein de votre IDE Python (<strong>Pyzo</strong>, <strong>Spyder</strong>, <strong>Jupyter</strong>, etc.) vous pouvez vous référez à l'aide suivante : <a href="https://stackoverflow.com/questions/33897860/python-spyder-conda-install-failure">Stackoverflow</a>.</p>
 
 </div>
 </div>
@@ -13157,13 +13236,13 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Importation-des-librairies-dans-python-:">Importation des librairies dans python :<a class="anchor-link" href="#Importation-des-librairies-dans-python-:">&#182;</a></h2>
+<h2 id="Importation-des-librairies-dans-Python-:">Importation des librairies dans Python :<a class="anchor-link" href="#Importation-des-librairies-dans-Python-:">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">redis</span>
@@ -13185,15 +13264,15 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Connexion">Connexion<a class="anchor-link" href="#Connexion">&#182;</a></h2><p>Commes les autres SGBD, il faut établir une connexion avec Redis pour communiquer avec le SGBD lors de nos requêtes python.</p>
-<p>Ici on fixe les paramètres de connexion (commun pour tous) pour le nom de l'hôte <code>redis_host</code> et le numéro de port serveur <code>redis_port</code>.</p>
+<h2 id="Connexion">Connexion<a class="anchor-link" href="#Connexion">&#182;</a></h2><p>Comme les autres SGBD, il faut établir une connexion avec Redis pour communiquer avec le SGBD lors de nos requêtes Python.</p>
+<p>Ici on fixe les paramètres de connexion (communs pour tous) pour le nom de l'hôte <code>redis_host</code> et le numéro de port serveur <code>redis_port</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">redis_host</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>
@@ -13208,14 +13287,14 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peux ainsi établir la connexion avec la commande <code>redis.Redis</code> en précisant le numéro de la database que l'on veux utiliser (par défaut 16 database disponible sur un serveur Redis).</p>
+<p>On peut ainsi établir la connexion avec la commande <code>redis.Redis</code> en précisant le numéro de la database que l'on veut utiliser. Il y a par défaut 16 databases disponible sur un serveur Redis mais le nombre de bases de données possibles sur Redis est infini : toutefois, il faut s’attendre à des problèmes de performances si on dépasse les 1000 bases de données.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">redis_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">redis_port</span><span class="p">,</span> <span class="n">db</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
@@ -13229,16 +13308,17 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nous-sommes-pr&#234;ts-pour-faire-quelques-requ&#234;tes-et-explorer-Redis!">Nous sommes pr&#234;ts pour faire quelques requ&#234;tes et explorer Redis!<a class="anchor-link" href="#Nous-sommes-pr&#234;ts-pour-faire-quelques-requ&#234;tes-et-explorer-Redis!">&#182;</a></h2>
+<h2 id="Cr&#233;ation-de-notre-base-de-donn&#233;es">Cr&#233;ation de notre base de donn&#233;es<a class="anchor-link" href="#Cr&#233;ation-de-notre-base-de-donn&#233;es">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nous avons choisi un exemple pour illustrer la force de Redis : la gestion de stock de sushi <strong>(miam)</strong>.</p>
-<p><em>Voici une photo d'un échantillon de sushis variés</em> <a href="https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg">sushi</a>
-<em>source:<a href="https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg">https://www.nippon.com/fr/ncommon/contents/japan-data/174999/174999.jpg</a></em></p>
+<p>Nous avons choisi un exemple pour illustrer la force de Redis : la gestion de stock de sushi <strong>(miam)</strong>. <br>
+Nous avons fait le choix de créer notre propre jeu de données. <br>
+Pour cela nous avons défini un ensemble de clés, et pour chacune de ces clés, nous avons défini un ensemble de « valeurs » / « modalités » possibles stockés dans le format hash de Redis. <br>
+Ces hashs peuvent être modifiés n’importe quand de part l’ajout de nouveaux sushis dans la base de données.</p>
 
 </div>
 </div>
@@ -13246,11 +13326,11 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Cr&#233;ation-de-notre-base-de-donn&#233;es">Cr&#233;ation de notre base de donn&#233;es<a class="anchor-link" href="#Cr&#233;ation-de-notre-base-de-donn&#233;es">&#182;</a></h1><p>Nous avons choisi de créer notre base de données de sushi en indiquant :</p>
+<p>Nous avons choisi de créer notre base de données de sushis en indiquant :</p>
 <ul>
-<li>la composition d'un sushi selon les ingrédients qui le composent : 73 ingrédients différents, qui peuvent prendre la modalité 'Oui' (le sushi contient cet ingrédient) ou 'Non' (le sushi ne contient pas cet ingrédient)</li>
-<li>le stock de ce sushi disponible : généré aléatoirement entre 10 et 10000</li>
-<li>le nombre de sushi acheté : initialisé à 0</li>
+<li>La composition d'un sushi selon les ingrédients qui le composent : 73 ingrédients différents, qui peuvent prendre la modalité 'Oui' (le sushi contient cet ingrédient) ou 'Non' (le sushi ne contient pas cet ingrédient).</li>
+<li>Le stock de ce sushi disponible : généré aléatoirement entre 10 et 10 000.</li>
+<li>Le nombre de sushis achetés : initialisé à 0.</li>
 </ul>
 
 </div>
@@ -13258,7 +13338,7 @@ pip install seaborn
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Création de la database sushis</span>
@@ -13266,6 +13346,7 @@ pip install seaborn
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">444</span><span class="p">)</span>
 
 <span class="c1"># Liste des attributs avec 2 modalités : les ingrédients</span>
+
 <span class="n">saumon</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Oui&#39;</span><span class="p">,</span> <span class="s1">&#39;Non&#39;</span><span class="p">]</span>
 <span class="n">saumon_teriyaki</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Oui&#39;</span><span class="p">,</span> <span class="s1">&#39;Non&#39;</span><span class="p">]</span>
 <span class="n">daurade</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Oui&#39;</span><span class="p">,</span> <span class="s1">&#39;Non&#39;</span><span class="p">]</span>
@@ -13346,7 +13427,7 @@ pip install seaborn
 
 <span class="n">tps1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100000</span><span class="p">):</span>
     <span class="n">saumon_choice</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">saumon</span><span class="p">)</span>
     <span class="n">saumon_teriyaki_choice</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">saumon_teriyaki</span><span class="p">)</span>
     <span class="n">daurade_choice</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">daurade</span><span class="p">)</span>
@@ -13468,7 +13549,7 @@ pip install seaborn
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.044649485999798344
+<pre>4.5599060400000155
 </pre>
 </div>
 </div>
@@ -13480,7 +13561,7 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Le temps pour créer une liste de 1 million de sushis différents est d'environ  A COMPLETER</p>
+<p>Le temps pour créer une liste de 100 000 sushis différents est d'environ 4.56 secondes.</p>
 
 </div>
 </div>
@@ -13488,14 +13569,14 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="On-ajoute-ensuite-nos-donn&#233;es-g&#233;n&#233;r&#233;es-dans-redis">On ajoute ensuite nos donn&#233;es g&#233;n&#233;r&#233;es dans redis<a class="anchor-link" href="#On-ajoute-ensuite-nos-donn&#233;es-g&#233;n&#233;r&#233;es-dans-redis">&#182;</a></h3><p>Une des forces de redis est l'utilisation de pipeline pour réaliser les requêtes, nous y reviendrons en fin de rapport. Pour plus d'informations, rendez-vous <a href="https://redis.io/topics/pipelining">ici</a>.</p>
+<h2 id="On-ajoute-ensuite-nos-donn&#233;es-g&#233;n&#233;r&#233;es-dans-Redis">On ajoute ensuite nos donn&#233;es g&#233;n&#233;r&#233;es dans Redis<a class="anchor-link" href="#On-ajoute-ensuite-nos-donn&#233;es-g&#233;n&#233;r&#233;es-dans-Redis">&#182;</a></h2><p>Une des forces de redis est l'utilisation de pipeline pour réaliser les requêtes, nous y reviendrons en fin de rapport. Pour plus d'informations, rendez-vous <a href="https://redis.io/topics/pipelining">ici</a>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">r</span><span class="o">.</span><span class="n">pipeline</span><span class="p">()</span> <span class="k">as</span> <span class="n">pipe</span><span class="p">:</span> 
@@ -13519,7 +13600,7 @@ pip install seaborn
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>&lt;ipython-input-48-4b3353b65ed5&gt;:4: DeprecationWarning: Redis.hmset() is deprecated. Use Redis.hset() instead.
+<pre>&lt;ipython-input-6-4b3353b65ed5&gt;:4: DeprecationWarning: Redis.hmset() is deprecated. Use Redis.hset() instead.
   r.hmset(name,sushis[i])
 </pre>
 </div>
@@ -13532,21 +13613,36 @@ pip install seaborn
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peux ensuite effectuer quelques requêtes simples avec les objets <strong>hashs</strong> que nous utiliserons au cours de notre projet.
+<p>Le durée pour ajouter une liste de 100 000 sushis différents à Redis est d'environ 25 secondes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Nous-sommes-pr&#234;ts-pour-faire-quelques-requ&#234;tes-et-explorer-les-possibilit&#233;s-de-Redis-!">Nous sommes pr&#234;ts pour faire quelques requ&#234;tes et explorer les possibilit&#233;s de Redis !<a class="anchor-link" href="#Nous-sommes-pr&#234;ts-pour-faire-quelques-requ&#234;tes-et-explorer-les-possibilit&#233;s-de-Redis-!">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut ensuite effectuer quelques requêtes simples avec les objets <strong>hashs</strong> que nous utiliserons au cours de notre projet.
 Pour plus d'informations sur les requêtes sur les types d'objets <strong>hashs</strong>, rendez-vous <a href="https://redis.io/commands#hash">ici</a>.</p>
-<p>Ainsi, comme exemple ici, nous avons nos clés avec la dénomination <em>sushi:i</em> avec i le numéro du sushi allant de 1 à 1000000. Nous pouvons alors récupérer au sein de chaque clés différentes informations stockés sous une forme similaire à un dictionnaire.</p>
+<p>Ainsi, comme exemple, nous avons nos clés avec la dénomination <em>sushi:i</em> avec i le numéro du sushi allant de 1 à 100 000. Nous pouvons alors récupérer au sein de chaque clé différentes informations stockées sous une forme similaire à un dictionnaire.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stock_exemple_propre</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="s1">&#39;sushi:3&#39;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-<span class="n">stock_exemple_bytes</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="s1">&#39;sushi:3&#39;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Propre:&quot;</span><span class="p">,</span><span class="n">stock_exemple_propre</span><span class="p">,</span><span class="s2">&quot;  &quot;</span><span class="p">,</span><span class="s2">&quot;Bytes:&quot;</span><span class="p">,</span><span class="n">stock_exemple_bytes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stock_exemple_propre</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="s1">&#39;sushi:3564&#39;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">stock_exemple_bytes</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="s1">&#39;sushi:3564&#39;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;En écriture propre : &quot;</span><span class="p">,</span><span class="n">stock_exemple_propre</span><span class="p">,</span><span class="s2">&quot; / &quot;</span><span class="p">,</span><span class="s2">&quot;En écriture Bytes : &quot;</span><span class="p">,</span><span class="n">stock_exemple_bytes</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13563,7 +13659,7 @@ Pour plus d'informations sur les requêtes sur les types d'objets <strong>hashs<
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Propre: 7786    Bytes: b&#39;7786&#39;
+<pre>En écriture propre :  1894  /  En écriture Bytes :  b&#39;1894&#39;
 </pre>
 </div>
 </div>
@@ -13576,8 +13672,15 @@ Pour plus d'informations sur les requêtes sur les types d'objets <strong>hashs<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ainsi, on récupère le stock (désigné par <code>stock</code> du <em>sushi:3</em>.
-Notez l'utilisation de <code>int()</code> et <code>.decode()</code> pour récupérez sous un format plus "agréable" les requêtes de redis qui sont retournées par défaut au format <strong>bytes</strong>.</p>
+Notez l'utilisation de <code>int()</code> et <code>.decode()</code> pour récupérez sous un format plus "agréable" les requêtes de Redis qui sont retournées par défaut au format <strong>bytes</strong>.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cr&#233;ation-de-fonctions-utiles">Cr&#233;ation de fonctions utiles<a class="anchor-link" href="#Cr&#233;ation-de-fonctions-utiles">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13595,25 +13698,40 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 <div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># on définit notre message d&#39;erreur qu&#39;on utilisera pour prévenir l&#39;utilisateur de la fin du stock d&#39;un objet</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># On définit nos messages d&#39;erreur, que l&#39;on utilisera pour prévenir l&#39;utilisateur selon différents critères </span>
 
+<span class="c1"># Plus de stock pour le sushi désiré</span>
 <span class="k">class</span> <span class="nc">OutOfStockError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Raised when sushi.com is out of stock for the desired sushi&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Notre magasin de sushis n&#39;a plus du tout de stock pour le sushi désiré&quot;&quot;&quot;</span>
     
+<span class="c1"># Stock rempli pour le sushi désiré : stock fixé à 10 000 maximum</span>
 <span class="k">class</span> <span class="nc">TooMuchStockError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Raised when sushi.com is full of the desired sushi&quot;&quot;&quot;</span>
-    
+    <span class="sd">&quot;&quot;&quot;Notre magasin de sushis n&#39;a plus de place pour stocker le sushi d&#39;intérêt, nous n&#39;avons rien pu ajouter</span>
+<span class="sd">    au stock&quot;&quot;&quot;</span>
+
+<span class="c1"># Le client désirait acheter trop de sushis et a fini la fin du stock</span>
 <span class="k">class</span> <span class="nc">TooMuchDemandError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Raised when sushi.com has not enough sushi asked&quot;&quot;&quot;</span>
-    
+    <span class="sd">&quot;&quot;&quot;Le client souhaitait acheter plus de sushis qu&#39;il n&#39;y en avait de disponibles, il a fini le stock</span>
+<span class="sd">    et n&#39;a pas eu autant de sushis qu&#39;il l&#39;esperait&quot;&quot;&quot;</span>
+
+<span class="c1"># Nous avons restocké au maximum les 10 000 sushis</span>
 <span class="k">class</span> <span class="nc">NoPlaceAvailableError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Raised when sushi.com has restocké les 10000 sushis maximum.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Notre magasin n&#39;a pas assez de place pour stocker tous les sushis que l&#39;on souhaitait,</span>
+<span class="sd">    seuls certains ont pu être ajoutés au stock&quot;&quot;&quot;</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En outre, Redis propose des fonctionnalités d’incrémentation et de décrémentation intéressantes : il est possible d’incrémenter et de décrémenter facilement et simultanément un grand nombre de valeurs. Ce qui fait que ce SGBD est bien adapté pour la gestion de stock et la vente en temps réel.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13625,7 +13743,7 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">buyitem</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sushi_id</span><span class="p">,</span><span class="n">count</span><span class="p">):</span>
@@ -13636,14 +13754,14 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 
             <span class="n">pipe</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">)</span>
             <span class="n">nleft</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-            <span class="c1"># On utilise le int et decode pour convertir l&#39;output bytes de redis en nombre int</span>
+            <span class="c1"># On utilise le int et decode pour convertir l&#39;output bytes de Redis en nombre int</span>
             
             <span class="c1"># On réalise l&#39;opération d&#39;achat normalement s&#39;il y a assez de sushis en stock</span>
             <span class="k">if</span> <span class="n">nleft</span> <span class="o">&gt;</span> <span class="n">count</span> <span class="p">:</span>
                 <span class="n">pipe</span><span class="o">.</span><span class="n">multi</span><span class="p">()</span> <span class="c1"># On débute l&#39;enregistrement des étapes qu&#39;on veux réaliser sur le serveur redis</span>
                 <span class="n">pipe</span><span class="o">.</span><span class="n">hincrby</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">,</span> <span class="s1">&#39;stock&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">count</span><span class="p">)</span> <span class="c1"># Le stock diminue ...</span>
                 <span class="n">pipe</span><span class="o">.</span><span class="n">hincrby</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">,</span> <span class="s1">&#39;nb_achat&#39;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="c1"># ... Et le nombre de sushis achetés augmente</span>
-                <span class="n">pipe</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># On transfert l&#39;ensemble des étapes réalisée depuis multi sur notre serveur redis</span>
+                <span class="n">pipe</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span> <span class="c1"># On transfert l&#39;ensemble des étapes réalisée depuis multi sur notre serveur Redis</span>
                 <span class="k">break</span>
             
             <span class="c1"># Si le nombre de sushis n&#39;est pas suffisant pour satisfaire la demande, on achète tout ce qu&#39;il reste</span>
@@ -13678,7 +13796,7 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">buyitem</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="s2">&quot;sushi:5&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
@@ -13695,13 +13813,13 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[52]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[b&#39;6165&#39;, b&#39;60&#39;]</pre>
+<pre>[b&#39;6045&#39;, b&#39;180&#39;]</pre>
 </div>
 
 </div>
@@ -13709,6 +13827,14 @@ Pour cela nous aurons besoin de définir certains messages d'erreurs.</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Re-exécutez la cellule précédente : on a modifié les valeurs de stock et de la quantité d'achat sur notre database.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13721,7 +13847,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">restock</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">sushi_id</span><span class="p">,</span><span class="n">stock_count</span><span class="p">):</span>
@@ -13736,7 +13862,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
             <span class="c1"># S&#39;il y a suffisamment de places pour stocker les sushis, on achète le nombre demandé</span>
             <span class="k">if</span> <span class="n">nleft_restock</span> <span class="o">+</span> <span class="n">stock_count</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
                 <span class="n">pipe</span><span class="o">.</span><span class="n">multi</span><span class="p">()</span>
-                <span class="n">pipe</span><span class="o">.</span><span class="n">hincrby</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">,</span> <span class="s1">&#39;stock&#39;</span><span class="p">,</span> <span class="n">stock_count</span><span class="p">)</span>
+                <span class="n">pipe</span><span class="o">.</span><span class="n">hincrby</span><span class="p">(</span><span class="n">sushi_id</span><span class="p">,</span> <span class="s1">&#39;stock&#39;</span><span class="p">,</span> <span class="n">stock_count</span><span class="p">)</span> <span class="c1"># On modifie le stock sur notre database Redis</span>
                 <span class="n">pipe</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
                 <span class="k">break</span>
             
@@ -13771,11 +13897,11 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">restock</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="s1">&#39;sushi:9&#39;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">r</span><span class="o">.</span><span class="n">hmget</span><span class="p">(</span><span class="s2">&quot;sushi:4&quot;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">,</span><span class="s1">&#39;nb_achat&#39;</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">hmget</span><span class="p">(</span><span class="s2">&quot;sushi:9&quot;</span><span class="p">,</span><span class="s1">&#39;stock&#39;</span><span class="p">,</span><span class="s1">&#39;nb_achat&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13788,13 +13914,13 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[54]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[b&#39;9207&#39;, b&#39;0&#39;]</pre>
+<pre>[b&#39;9742&#39;, b&#39;0&#39;]</pre>
 </div>
 
 </div>
@@ -13806,14 +13932,22 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nous allons maintenant créer la fonction <code>item_info</code>. Celle-ci permet de récupérer toutes les informations relatives à nos ventes de sushis : stock, vente. Ces informations seront ensuite stockées dans un Dataframe Pandas.</p>
+<p>En répétant la cellule précédente plusieurs fois, on augmente la quantité stockée du sushi 9 comme précédemment.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nous allons maintenant créer la fonction <code>item_info</code>. Celle-ci permet de récupérer toutes les informations relatives à nos ventes de sushis : stock, vente. Ces informations seront ensuite stockées dans un dataframe <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">Pandas</a>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">item_info</span><span class="p">():</span>
@@ -13842,7 +13976,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_sushi</span> <span class="o">=</span> <span class="n">item_info</span><span class="p">()</span>
@@ -13859,7 +13993,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[56]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -13918,55 +14052,38 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
       <td>...</td>
     </tr>
     <tr>
-      <th>sushi:995</th>
-      <td>7978</td>
+      <th>sushi:99995</th>
+      <td>9550</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>sushi:996</th>
-      <td>4278</td>
+      <th>sushi:99996</th>
+      <td>5211</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>sushi:997</th>
-      <td>833</td>
+      <th>sushi:99997</th>
+      <td>8203</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>sushi:998</th>
-      <td>4246</td>
+      <th>sushi:99998</th>
+      <td>1215</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>sushi:999</th>
-      <td>8563</td>
+      <th>sushi:99999</th>
+      <td>5521</td>
       <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>1000 rows × 2 columns</p>
+<p>100000 rows × 2 columns</p>
 </div>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># A ENLEVER</span>
-
-<span class="c1">#sns.set()</span>
-<span class="c1">#sns.barplot(data=liste_sushi,x=liste_sushi.index,y=&#39;stock&#39;)</span>
-<span class="c1">#sns.barplot(data=liste_sushi,x=liste_sushi.index,y=&#39;nb_achat&#39;)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -13974,14 +14091,14 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La fonction <code>item_ingredients</code>, elle, permet de récupérer les ingrédients de nos différents types de sushis (73 variables donc, correspondant à l'absence ou à la présence de chacun des ingrédients). Ces informations seront ensuite stockées dans un Dataframe Pandas.</p>
+<p>La fonction <code>item_ingredients</code>, elle, permet de récupérer les ingrédients de nos différents types de sushis (73 variables donc, correspondant à l'absence ou à la présence de chacun des ingrédients). Ces informations seront ensuite stockées dans un dataframe Pandas.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">item_ingredient</span><span class="p">():</span>
@@ -14012,7 +14129,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 
         <span class="c1"># La boucle permet de rentrer l&#39;ensemble des ingrédients dans le tableau</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">name_ingredient</span><span class="p">)):</span>
-            <span class="n">ingredient</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name_ingredient</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="n">ingredient</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">hget</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name_ingredient</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="c1"># On récupère les infos depuis la database Redis</span>
             <span class="n">ingredient_add</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ingredient</span><span class="p">)</span>
         
         <span class="n">ingredient_get</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ingredient_add</span><span class="p">)</span>
@@ -14031,7 +14148,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ingredient_df</span> <span class="o">=</span> <span class="n">item_ingredient</span><span class="p">()</span>
@@ -14048,7 +14165,7 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[59]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -14240,111 +14357,63 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
       <td>...</td>
     </tr>
     <tr>
-      <th>sushi:995</th>
-      <td>Oui</td>
+      <th>sushi:99995</th>
+      <td>Non</td>
       <td>Oui</td>
       <td>Oui</td>
       <td>Non</td>
       <td>Non</td>
-      <td>Non</td>
-      <td>Non</td>
       <td>Oui</td>
       <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
       <td>Oui</td>
       <td>...</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
       <td>Oui</td>
       <td>Non</td>
       <td>Oui</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
     </tr>
     <tr>
-      <th>sushi:996</th>
+      <th>sushi:99996</th>
       <td>Non</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>...</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
-    </tr>
-    <tr>
-      <th>sushi:997</th>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>...</td>
-      <td>Oui</td>
       <td>Oui</td>
       <td>Non</td>
       <td>Non</td>
       <td>Non</td>
       <td>Oui</td>
       <td>Oui</td>
-      <td>Non</td>
-      <td>Non</td>
-      <td>Oui</td>
-    </tr>
-    <tr>
-      <th>sushi:998</th>
-      <td>Oui</td>
-      <td>Oui</td>
       <td>Oui</td>
       <td>Oui</td>
       <td>Non</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
       <td>...</td>
       <td>Non</td>
       <td>Oui</td>
       <td>Non</td>
-      <td>Oui</td>
-      <td>Oui</td>
       <td>Non</td>
       <td>Non</td>
+      <td>Oui</td>
+      <td>Oui</td>
       <td>Oui</td>
       <td>Oui</td>
       <td>Oui</td>
     </tr>
     <tr>
-      <th>sushi:999</th>
+      <th>sushi:99997</th>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
       <td>Oui</td>
       <td>Non</td>
       <td>Oui</td>
       <td>Oui</td>
-      <td>Non</td>
-      <td>Oui</td>
-      <td>Non</td>
-      <td>Non</td>
       <td>Oui</td>
       <td>Non</td>
       <td>...</td>
@@ -14352,16 +14421,64 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
       <td>Oui</td>
       <td>Non</td>
       <td>Oui</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+    </tr>
+    <tr>
+      <th>sushi:99998</th>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
       <td>Oui</td>
       <td>Non</td>
       <td>Oui</td>
       <td>Oui</td>
+      <td>Oui</td>
+      <td>...</td>
       <td>Non</td>
       <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Non</td>
+    </tr>
+    <tr>
+      <th>sushi:99999</th>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>...</td>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Oui</td>
+      <td>Non</td>
+      <td>Non</td>
     </tr>
   </tbody>
 </table>
-<p>1000 rows × 73 columns</p>
+<p>100000 rows × 73 columns</p>
 </div>
 </div>
 
@@ -14374,14 +14491,14 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>La fonction <code>sushi_interest</code>, définie ci-dessous, est très pratique pour les clients. Ceux-ci peuvent entrer en arguments une liste des ingrédients qu'ils aiment dans les sushis, et la fonction leur retourne tous les sushis de la carte qui contiennent l'ensemble de ces ingrédients.</p>
+<p>La fonction <code>sushi_interet</code>, définie ci-dessous, est très pratique pour les clients. Ceux-ci peuvent entrer en arguments une liste des ingrédients qu'ils aiment dans les sushis, et la fonction leur retourne tous les sushis de la carte qui contiennent l'ensemble de ces ingrédients récupérés précédemment sur la database redis.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sushi_interet</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">liste_ingredients</span><span class="p">,</span><span class="n">ingredient_df</span><span class="p">):</span>
@@ -14407,17 +14524,18 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Faisons un essai : je suis un client qui aime le saumon, l'avocat, le thon, la roquette, le concombre et la cannelle, et souhaiterait un sushi qui mélange toutes ces saveurs.</p>
+<p>Faisons un essai : je suis un client qui aime le saumon, l'avocat, le thon, la roquette, la cannelle, la cardamone, le curcuma, les fèves, les edamame, le paprika, le piment, le poivre et le safran, et je souhaiterais un sushi qui mélange toutes ces saveurs (rien que ça).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;saumon&#39;</span><span class="p">,</span><span class="s1">&#39;avocat&#39;</span><span class="p">,</span><span class="s1">&#39;thon&#39;</span><span class="p">,</span><span class="s1">&#39;roquette&#39;</span><span class="p">,</span><span class="s1">&#39;concombre&#39;</span><span class="p">,</span><span class="s1">&#39;cannelle&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;saumon&#39;</span><span class="p">,</span> <span class="s1">&#39;avocat&#39;</span><span class="p">,</span> <span class="s1">&#39;thon&#39;</span><span class="p">,</span> <span class="s1">&#39;roquette&#39;</span><span class="p">,</span> <span class="s1">&#39;cannelle&#39;</span><span class="p">,</span> <span class="s1">&#39;cardamome&#39;</span><span class="p">,</span> <span class="s1">&#39;curcuma&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;feve&#39;</span><span class="p">,</span> <span class="s1">&#39;edamame&#39;</span><span class="p">,</span> <span class="s1">&#39;paprika&#39;</span><span class="p">,</span> <span class="s1">&#39;piment&#39;</span><span class="p">,</span> <span class="s1">&#39;poivre&#39;</span><span class="p">,</span> <span class="s1">&#39;safran&#39;</span><span class="p">]</span>
 <span class="n">sushi_interet</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">liste_ingredients</span><span class="p">,</span><span class="n">ingredient_df</span><span class="p">)</span>
 </pre></div>
 
@@ -14435,20 +14553,37 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Vous pourriez apprécier les sushis suivants : sushi:158 sushi:315 sushi:371 sushi:520 sushi:586 sushi:661 sushi:683 sushi:731 sushi:769 sushi:929 sushi:998 
+<pre>Vous pourriez apprécier les sushis suivants : sushi:1083 sushi:1872 sushi:11616 sushi:12887 sushi:16489 sushi:20978 sushi:22943 sushi:24880 sushi:25332 sushi:37258 sushi:39997 sushi:59722 sushi:73204 sushi:75115 sushi:80214 sushi:84255 sushi:93868 sushi:94754 
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[62]:</div>
+    <div class="prompt output_prompt">Out[47]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[158, 315, 371, 520, 586, 661, 683, 731, 769, 929, 998]</pre>
+<pre>[1083,
+ 1872,
+ 11616,
+ 12887,
+ 16489,
+ 20978,
+ 22943,
+ 24880,
+ 25332,
+ 37258,
+ 39997,
+ 59722,
+ 73204,
+ 75115,
+ 80214,
+ 84255,
+ 93868,
+ 94754]</pre>
 </div>
 
 </div>
@@ -14460,193 +14595,33 @@ Arbitrairement, nous avons choisi qu'un magasin ne pouvait stocker que 10 000 su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Eventuellement-inclure-:">Eventuellement inclure :<a class="anchor-link" href="#Eventuellement-inclure-:">&#182;</a></h3><ul>
-<li>rajouter des options de monitoring du stock des objets et complexifier un peu l'offre donc voir modifier les chsoes au début pour faire genre de la gestion de maxi database de vetements </li>
-<li>une visu type barchat du stock pour chaque produit avec les requetes sur la db? à voir comment faire je maitrise pas trop ça</li>
-<li><p>des visus complémentaires informant sur l'état des stocks, évolution des achats etc... à voir</p>
-<p>##### faire des graphs "big data"</p>
-</li>
-</ul>
+<h2 id="Bilan-de-l'outil-SGBD-Redis">Bilan de l'outil SGBD Redis<a class="anchor-link" href="#Bilan-de-l'outil-SGBD-Redis">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Redis présente de nombreux <strong>avantages</strong> :</p>
 <ul>
-<li>genre faire une représentation de l'évolution du stock/nb_achat (total de sushi?) au cours du temps</li>
-<li>faire le camembert de proportion de sushi qui contient tel ingredient </li>
-</ul>
-<p>on s'intéresse à l'expiration et à comment on pourrait l'utiliser en pratique</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[375]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-<span class="n">r</span><span class="o">.</span><span class="n">setex</span><span class="p">(</span><span class="s2">&quot;runner&quot;</span><span class="p">,</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mf">1.5</span><span class="p">),</span> <span class="n">value</span> <span class="o">=</span><span class="s2">&quot; careful! &quot;</span><span class="p">)</span>
-<span class="n">r</span><span class="o">.</span><span class="n">ttl</span><span class="p">(</span><span class="s2">&quot;runner&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[375]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>90</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="on-va-voir-comment-on-peux-ajouter-des-sushis-temporaires-!-avec-de-superbes-recettes-miam-!">on va voir comment on peux ajouter des sushis temporaires ! avec de superbes recettes miam !<a class="anchor-link" href="#on-va-voir-comment-on-peux-ajouter-des-sushis-temporaires-!-avec-de-superbes-recettes-miam-!">&#182;</a></h3><ul>
-<li>pour cela on se sert de la fonctionnalité EXPIRE présente dans redis, pour en savoir plus allez <a href="https://redis.io/commands#generic">ici</a></li>
-<li><strong>ce serait bien d'avoir un système de surveillance des perfs de notre server redis</strong></li>
+<li>Une prise en main très facile et une super documentation : tout est renseigné, on comprend assez vite le fonctionnement de ce SGBD.</li>
+<li>Il est Open Source et accessible facilement (ce n'est toutefois pas le cas de l'environnement autour, car le projet a été repris par une entreprise : <a href="https://redislabs.com/">redislabs</a>).</li>
+<li>Il est très flexible (Redis permet de manipuler facilement à peu près n’importe quel type de données).</li>
+<li>Il permet également une très bonne portabilité (les données, et plus particulièrement les clefs/valeurs stockées peuvent être facilement déplacées d’un système à l’autre sans avoir à réécrire du code).</li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[397]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sert a fixer la durée de vie d&#39;un sushi ! par ex simuler une vente temporaire !</span>
-
-<span class="n">r</span><span class="o">.</span><span class="n">expire</span><span class="p">(</span><span class="s1">&#39;sushi:3&#39;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
-
-<span class="c1"># tant que la clé est encore en vie on peux la manipuler comme bon nous semble et récupérer les informations que l&#39;on veux</span>
-<span class="n">r</span><span class="o">.</span><span class="n">hgetall</span><span class="p">(</span><span class="s1">&#39;sushi:3&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[397]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">life_expire</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">life_count</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Qualitative-approach">Qualitative approach<a class="anchor-link" href="#Qualitative-approach">&#182;</a></h3><p>We are looking for differences in :</p>
+<p><strong>Toutefois :</strong> <br></p>
 <ul>
-<li>grammar</li>
-<li>ease of use and prise en main</li>
-<li>setting up process (manipulation of our first database)</li>
-<li>access of ressources</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="on-parle-de-redis-ici-de-son-usage">on parle de redis ici de son usage<a class="anchor-link" href="#on-parle-de-redis-ici-de-son-usage">&#182;</a></h3><ul>
-<li>prise ne main très facile et super documentation tout est renseigné on comprend assez vite son fonctionnement </li>
-<li>difficile de se projeter dans l'usage de ce sgbd car différents des autres et assez spécifique même si on peux l'utilsier pour tout usage il sera surtout performant dans des tâches spé.</li>
-<li>open source et accessible facilement mais l'environnement autour non car le proejt à été repris par une entreprise <a href="https://redislabs.com/">redislabs</a> et typiquement un redis-GUI (logiciel pour manipuler des db redis sans lignes de commandes) n'est pas accessible facilement </li>
-<li>une bonne communauté mais pas très large donc accès ressources limités</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Quantitative-approach">Quantitative approach<a class="anchor-link" href="#Quantitative-approach">&#182;</a></h3><p>We are looking for differences in :</p>
-<ul>
-<li>time computation of requests</li>
-<li>memore/cache use for same data</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>ex : système pour gérer els incrémentation lors de connexion sur srveeur/page web simultanée etc.. gère bien ça</p>
-<p>gere automatiquement l'expiration des informations7</p>
-<p>système de persistance :</p>
-<ul>
-<li>RDB : on crée un dump file en .rdb qui est sauvegardé et qui peux etre rechargé </li>
-<li>AOF : ??? a voir</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Expliquer histoire de redis les points clés et différences par rapport aux autres sql :</p>
-<ul>
-<li>cache et session bonne gestion</li>
-<li>systeme cle-valeur avancé incr, decincr etc.. pas mal puissant</li>
-<li>L'une des raisons pour lesquelles Redis est si rapide dans les opérations de lecture et d'écriture est que la base de données est conservée en mémoire (RAM) sur le serveur.</li>
+<li>Il est difficile de se projeter dans l'usage de ce SGBD : il est très différent des autres et assez spécifique. Même si on peux l'utiliser pour tout usage, il sera surtout performant dans des tâches spécifiques.</li>
+<li>La persistance des données n’étant pas optimale sur Redis, ce SGBD est souvent utilisé comme base de données secondaire, en complément d’un autre type de base de données.</li>
+<li>Il est recommandé de ne pas stocker sur Redis des informations sensibles ou des informations que l’on n’a pas conservé ailleurs. Toutefois, afin d’assurer la persistance des données (et d’éviter la perte de données en cas d’incident tel qu’un crash), Redis offre la possibilité de capturer l’état de la base de données à un temps donné dans un fichier .rdb.</li>
+<li>L’accès aux données n’est pas sécurisé. Une personne connectée sur le serveur pourra exploiter toutes les données Redis, il n’est donc pas conseillé de stocker des données sensibles sur ce SGBD.</li>
 </ul>
 
 </div>
